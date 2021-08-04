@@ -1,6 +1,7 @@
 
 
 import UIKit
+import Kingfisher
 
 class SearchViewController: UIViewController {
     
@@ -30,10 +31,12 @@ extension SearchViewController : UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ResultCell", for: indexPath) as? ResultCell else { return UICollectionViewCell() }
         
         let movie = movies[indexPath.item]
-        //imagepath는 String -> image 로 바꾸는 작업 필요
         
-//        cell.thumnailImageView.image = movie.thumnailPath
-        
+        //imagepath는 url -> image 로 바꾸는 작업 필요
+        //Kingfisher 오픈 라이브러리를 사용해 간단히 바꿨습니다~~
+        let url = URL(string: movie.thumnailPath)
+        cell.thumnailImageView.kf.setImage(with: url)
+        cell.backgroundColor = .red
         return cell
     }
     
@@ -65,11 +68,12 @@ extension SearchViewController : UISearchBarDelegate {
     private func dismissKeyBoard() -> Void {
         searchBar.resignFirstResponder() // 키보드 내려 버리기
     }
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         //검색 시작이 동작 시작됨
         
         
-        // 키보드 올라와 있을때 , 내려 버리기
+        // 키보드 올라와 있을때 , 내려 버리기 결과있을때 바꿔주기위해
         dismissKeyBoard()
         
         // 검색어가 있는지 확인
@@ -133,11 +137,12 @@ class SearchAPI {
             let string  = String(data: resultData, encoding: .utf8)
             
             // movie 리스트 초기화 및 컴플리션에 바인딩
+            //let movies: [Movie]
             let movies = SearchAPI.parseMovies(resultData)
             completion(movies)
             
             print("--> resultData: \(string)")
-            completion([])
+            
         }
         dataTask.resume()
     }
@@ -176,7 +181,7 @@ struct Movie : Codable {
     
     enum CodingKeys : String , CodingKey { // A type that can be used as a key for encoding and decoding.
         case title = "trackName"
-        case director = "ar tistName"
+        case director = "artistName"
         case thumnailPath = "artworkUrl100"
         case previewURL = "previewUrl" // api상에서의 변수명을 우리가 원하는 객체 프로퍼티 형태로 바꾸기 위함
         
