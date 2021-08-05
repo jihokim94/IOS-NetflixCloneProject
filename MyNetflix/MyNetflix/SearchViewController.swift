@@ -1,13 +1,11 @@
-
-
 import UIKit
 import Kingfisher
+import AVFoundation
 
 class SearchViewController: UIViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var resultCollectionView: UICollectionView!
-    
     
     var movies : [Movie] = []
     
@@ -16,8 +14,8 @@ class SearchViewController: UIViewController {
         searchBar.becomeFirstResponder()
     }
 }
+
 class ResultCell : UICollectionViewCell {
-    
     @IBOutlet weak var thumnailImageView: UIImageView!
 }
 
@@ -43,7 +41,25 @@ extension SearchViewController : UICollectionViewDataSource {
 }
 
 extension SearchViewController : UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        // 플레이어 창을 뜨워야한다.
+        let sb = UIStoryboard(name: "Player", bundle: nil) // 스토리 보드 선택
+        guard let vc =  sb.instantiateViewController(identifier: "PlayerViewController") as? PlayerViewController else { return } // 선택된 스토리보드 커스텀 클래스 연결
+        vc.modalPresentationStyle = .fullScreen // 뜨워졌을시전체 화면으로 설정
+        
+        
+        //선택한 인덱스를 바탕으로 플레이한 인스턴스 뽑기
+        let movie = movies[indexPath.item]
+        let url = URL(string: movie.previewURL) // 재생할 비디오 url
+        
+        let item = AVPlayerItem(url: url!)
+        
+        //player에 재생할 아이템 넣기
+        vc.player.replaceCurrentItem(with: item)
+        present(vc, animated: false, completion: nil) // 컨트롤러와 연결된 스토리 보드 뜨위기
+        
+    }
 }
 
 extension SearchViewController : UICollectionViewDelegateFlowLayout {
@@ -57,11 +73,8 @@ extension SearchViewController : UICollectionViewDelegateFlowLayout {
         //        10: 7 비율
         
         return  CGSize(width: width, height: height)
-        
     }
 }
-
-
 
 // searchBar 델리게이트 설정
 extension SearchViewController : UISearchBarDelegate {
@@ -72,14 +85,12 @@ extension SearchViewController : UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         //검색 시작이 동작 시작됨
         
-        
         // 키보드 올라와 있을때 , 내려 버리기 결과있을때 바꿔주기위해
         dismissKeyBoard()
         
         // 검색어가 있는지 확인
         guard let searchTerm = searchBar.text , searchTerm.isEmpty == false else { return }
-        
-        
+    
         // 서치텀에서 예외로 리턴되게 되면 서버와의 네트워킹은 필요없다 아래와 같은 내용은 조용하것지~~
         print("--> 검색어 : \(searchBar.text)")
         
@@ -93,20 +104,18 @@ extension SearchViewController : UISearchBarDelegate {
             DispatchQueue.main.async {
                 self.movies = movies
                 self.resultCollectionView.reloadData()
-                
             }
         }
         // - 검색을 받아올 모델 Movie , Response
         // - 결과를 받아서 , CollectionView로 표현해주자
-        
-        
     }
 }
 
 class SearchAPI {
     static func search(_ term : String , completion : @escaping ([Movie]) -> Void) {
         let session = URLSession(configuration: .default)
-        
+
+        //URL
         var urlComponents = URLComponents(string: "https://itunes.apple.com/search?")
         let mediaQuery = URLQueryItem(name: "media", value: "movie")
         let entityQuery = URLQueryItem(name: "entity", value: "movie")

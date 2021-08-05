@@ -5,6 +5,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -16,25 +17,72 @@
                         <rect key="frame" x="0.0" y="0.0" width="812" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T0Q-4y-bTn">
-                                <rect key="frame" x="706" y="42" width="39" height="30"/>
-                                <state key="normal" title="Close"/>
-                                <connections>
-                                    <action selector="closeButtonTapped:" destination="mbs-Ed-6wm" eventType="touchUpInside" id="CXF-dh-dQv"/>
-                                </connections>
-                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dbR-Qi-XXP" customClass="PlayerView" customModule="MyNetflix" customModuleProvider="target">
+                                <rect key="frame" x="44" y="0.0" width="724" height="375"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jlG-HW-Ze6" userLabel="Controll View">
+                                <rect key="frame" x="44" y="0.0" width="724" height="375"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rlF-wF-clg">
+                                        <rect key="frame" x="342.33333333333331" y="166" width="39.666666666666686" height="43.333333333333343"/>
+                                        <state key="normal" image="play.fill" catalog="system">
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="45"/>
+                                        </state>
+                                        <state key="selected" image="pause.fill" catalog="system"/>
+                                        <connections>
+                                            <action selector="togglePlayButton:" destination="mbs-Ed-6wm" eventType="touchUpInside" id="ssq-bz-4nC"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jWk-7V-eU0" userLabel="close">
+                                        <rect key="frame" x="670" y="35" width="31" height="30"/>
+                                        <state key="normal" image="xmark" catalog="system">
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="30"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="closeButtonTapped:" destination="mbs-Ed-6wm" eventType="touchUpInside" id="EOE-ld-Ph6"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="rlF-wF-clg" firstAttribute="centerX" secondItem="jlG-HW-Ze6" secondAttribute="centerX" id="EwB-Qc-8Ev"/>
+                                    <constraint firstItem="rlF-wF-clg" firstAttribute="centerY" secondItem="jlG-HW-Ze6" secondAttribute="centerY" id="Fmf-18-QpU"/>
+                                    <constraint firstItem="jWk-7V-eU0" firstAttribute="top" secondItem="jlG-HW-Ze6" secondAttribute="top" constant="35" id="N0b-F2-oqc"/>
+                                    <constraint firstAttribute="trailing" secondItem="jWk-7V-eU0" secondAttribute="trailing" constant="23" id="rXO-HH-OAQ"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Du5-Th-wYi"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="T0Q-4y-bTn" firstAttribute="leading" secondItem="Du5-Th-wYi" secondAttribute="leading" constant="662" id="6M9-Be-Rbu"/>
-                            <constraint firstItem="T0Q-4y-bTn" firstAttribute="top" secondItem="Du5-Th-wYi" secondAttribute="top" constant="42" id="vID-mj-x4M"/>
+                            <constraint firstItem="Du5-Th-wYi" firstAttribute="trailing" secondItem="dbR-Qi-XXP" secondAttribute="trailing" id="3bn-n7-jdX"/>
+                            <constraint firstItem="dbR-Qi-XXP" firstAttribute="top" secondItem="Du5-Th-wYi" secondAttribute="top" id="Q9D-nE-ZRS"/>
+                            <constraint firstItem="jlG-HW-Ze6" firstAttribute="top" secondItem="Du5-Th-wYi" secondAttribute="top" id="YQi-EL-Ago"/>
+                            <constraint firstAttribute="bottom" secondItem="dbR-Qi-XXP" secondAttribute="bottom" id="fO4-RB-Z7b"/>
+                            <constraint firstItem="jlG-HW-Ze6" firstAttribute="leading" secondItem="Du5-Th-wYi" secondAttribute="leading" id="lQa-lR-Q59"/>
+                            <constraint firstAttribute="bottom" secondItem="jlG-HW-Ze6" secondAttribute="bottom" id="nfp-3q-78w"/>
+                            <constraint firstItem="dbR-Qi-XXP" firstAttribute="leading" secondItem="Du5-Th-wYi" secondAttribute="leading" id="oUj-y3-Ne4"/>
+                            <constraint firstItem="jlG-HW-Ze6" firstAttribute="trailing" secondItem="Du5-Th-wYi" secondAttribute="trailing" id="w02-ay-qzL"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="controllView" destination="jlG-HW-Ze6" id="T4T-EQ-gRd"/>
+                        <outlet property="playButton" destination="rlF-wF-clg" id="SLf-w3-3Zt"/>
+                        <outlet property="playerView" destination="dbR-Qi-XXP" id="bn2-oB-F1l"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Du-VI-KnT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1.4778325123152709" y="2.3999999999999999"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="pause.fill" catalog="system" width="116" height="128"/>
+        <image name="play.fill" catalog="system" width="116" height="128"/>
+        <image name="xmark" catalog="system" width="128" height="113"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>
