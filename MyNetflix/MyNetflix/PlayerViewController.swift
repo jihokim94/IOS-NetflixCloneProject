@@ -20,7 +20,11 @@ class PlayerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        playerView.player = player // 재생플레이어 초기화
+        playerView.player = player // 재생을 보여줄 ui에 플레이어 초기화
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        play()
     }
     
     @IBAction func togglePlayButton(_ sender: Any) {
@@ -29,8 +33,8 @@ class PlayerViewController: UIViewController {
         } else {
             play()
         }
-        // 누를때 마다 스위칭
-        playButton.isSelected = !playButton.isSelected
+//        // 누를때 마다 스위칭
+//        playButton.isSelected = !playButton.isSelected
     }
     
     func play(){
@@ -63,4 +67,5 @@ extension AVPlayer {
         return self.rate != 0
         
     }
+    
 }
