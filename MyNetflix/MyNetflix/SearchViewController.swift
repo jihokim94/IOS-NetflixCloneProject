@@ -1,13 +1,18 @@
 import UIKit
 import Kingfisher
 import AVFoundation
+import Firebase
 
 class SearchViewController: UIViewController {
+    
+    let db = Database.database().reference().child("searchHistory") // 검색 히스토리 만들거야~
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var resultCollectionView: UICollectionView!
     
     var movies : [Movie] = []
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -104,6 +109,8 @@ extension SearchViewController : UISearchBarDelegate {
             DispatchQueue.main.async {
                 self.movies = movies
                 self.resultCollectionView.reloadData()
+                let timestamp : Double = Date().timeIntervalSince1970.rounded()
+                self.db.childByAutoId().setValue(["term":searchTerm , "timestamp" : timestamp ])
             }
         }
         // - 검색을 받아올 모델 Movie , Response
