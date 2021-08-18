@@ -106,77 +106,33 @@ extension SearchViewController : UISearchBarDelegate {
             // collectionView로 표현하기
             print("몇개 넘어옴??? \(movies.count)개")
             
-            DispatchQueue.main.async {
-                self.movies = movies
-                self.resultCollectionView.reloadData()
-                let timestamp : Double = Date().timeIntervalSince1970.rounded()
-                self.db.childByAutoId().setValue(["term":searchTerm , "timestamp" : timestamp ])
+            if movies.count == 0 {
+                DispatchQueue.main.async {
+                    let alert = UIAlertController(title: "검색 결과", message: "검색결과가 없습니다", preferredStyle: .alert)
+                    let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                    alert.addAction(action)
+                    self.present(alert, animated: true, completion: nil)
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self.movies = movies
+                    self.resultCollectionView.reloadData()
+                    
+                    let timestamp : Double = Date().timeIntervalSince1970.rounded()
+                    let autoId = self.db.childByAutoId().key
+    //                self.db.setValue(autoId)
+                    self.db.child(autoId!).setValue(["searchId" : autoId as Any, "term":searchTerm , "timestamp" : timestamp ])
+                }
             }
+            
+            
         }
         // - 검색을 받아올 모델 Movie , Response
         // - 결과를 받아서 , CollectionView로 표현해주자
     }
 }
 
-class SearchAPI {
-    static func search(_ term : String , completion : @escaping ([Movie]) -> Void) {
-        let session = URLSession(configuration: .default)
 
-        //URL
-        var urlComponents = URLComponents(string: "https://itunes.apple.com/search?")
-        let mediaQuery = URLQueryItem(name: "media", value: "movie")
-        let entityQuery = URLQueryItem(name: "entity", value: "movie")
-        let termQuery = URLQueryItem(name: "term", value: term)
-        
-        urlComponents?.queryItems?.append(mediaQuery)
-        urlComponents?.queryItems?.append(entityQuery)
-        urlComponents?.queryItems?.append(termQuery)
-        
-        let requsetURL = urlComponents?.url!
-        
-        print(requsetURL)
-        
-        let dataTask = session.dataTask(with: requsetURL!) { data, respone, error in
-            let sucessRange = 200..<300
-            
-            guard error == nil , let statusCode = (respone as? HTTPURLResponse)?.statusCode , sucessRange.contains(statusCode) else {
-                completion([])
-                return
-            }
-            guard let resultData = data else {
-                completion([])
-                return
-            }
-            
-            //data -> [Movie]
-            // JSON Parsing
-            let string  = String(data: resultData, encoding: .utf8)
-            
-            // movie 리스트 초기화 및 컴플리션에 바인딩
-            //let movies: [Movie]
-            let movies = SearchAPI.parseMovies(resultData)
-            completion(movies)
-            
-            print("--> resultData: \(string)")
-            
-        }
-        dataTask.resume()
-    }
-    
-    static func parseMovies (_ data : Data) -> [Movie] {
-        
-        let decoder = JSONDecoder()
-        
-        do {
-            let response = try decoder.decode(Response.self, from: data)
-            let movies = response.movies
-            return movies
-        } catch {
-            print("--> Parsing error \(error.localizedDescription)")
-            return []
-        }
-    }
-}
 
 struct Response : Codable {
     let resultCount : Int
@@ -193,14 +149,16 @@ struct Movie : Codable {
     let director : String
     let thumnailPath : String
     let previewURL : String // 맛보기 URL 로 보여줄 예정
+    let description : String
     
     
     enum CodingKeys : String , CodingKey { // A type that can be used as a key for encoding and decoding.
+        // api상에서의 변수명을 우리가 원하는 객체 프로퍼티 형태로 바꾸기 위함
         case title = "trackName"
         case director = "artistName"
         case thumnailPath = "artworkUrl100"
-        case previewURL = "previewUrl" // api상에서의 변수명을 우리가 원하는 객체 프로퍼티 형태로 바꾸기 위함
-        
+        case previewURL = "previewUrl"
+        case description = "longDescription"
     }
 }
 
