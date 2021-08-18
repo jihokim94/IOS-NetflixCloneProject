@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Hwh-sH-bb0">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Hga-M8-L09">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -15,11 +15,11 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="MyNetflix" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="1200"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="1112"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentInsetAdjustmentBehavior="never" translatesAutoresizingMaskIntoConstraints="NO" id="JZK-7i-gRW">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="1117"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="1029"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vdn-31-UPo">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="497"/>
@@ -149,18 +149,18 @@
             <objects>
                 <viewController storyboardIdentifier="SearchViewController" id="Lf4-yK-Bdw" customClass="SearchViewController" customModule="MyNetflix" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5dE-BT-Tyt">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="K7Q-OD-KIA">
-                                <rect key="frame" x="0.0" y="44" width="414" height="51"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="51"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="Lf4-yK-Bdw" id="Y6S-j9-Qjc"/>
                                 </connections>
                             </searchBar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="geh-91-mMg">
-                                <rect key="frame" x="0.0" y="95" width="414" height="718"/>
+                                <rect key="frame" x="0.0" y="51" width="414" height="674"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="6SG-Xt-ol8">
                                     <size key="itemSize" width="128" height="128"/>
@@ -220,11 +220,29 @@
             </objects>
             <point key="canvasLocation" x="1214.4927536231885" y="989.73214285714278"/>
         </scene>
+        <!--Item-->
+        <scene sceneID="dSh-B1-NlI">
+            <objects>
+                <navigationController id="Hga-M8-L09" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="AIG-Kg-LFO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="ncA-XK-Wnt">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Hwh-sH-bb0" kind="relationship" relationship="rootViewController" id="8kS-IE-7di"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bOG-WA-VPq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2284" y="-239"/>
+        </scene>
         <!--App Tabbar Controller-->
         <scene sceneID="Cfq-lD-a1M">
             <objects>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Hwh-sH-bb0" customClass="AppTabbarController" customModule="MyNetflix" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="I59-QK-U9E"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="OaA-nD-CAc">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -241,21 +259,21 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IrD-Qn-KWR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2325" y="-49"/>
+            <point key="canvasLocation" x="3145" y="-239"/>
         </scene>
         <!--공개예정-->
         <scene sceneID="ryf-ci-vYK">
             <objects>
                 <viewController id="Blf-Or-i5j" customClass="UpcomingViewController" customModule="MyNetflix" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ce7-Bh-AkS">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="1600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="1512"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BBq-xx-Via">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="1517"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="1429"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VWV-Ux-JD2">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1600"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1512"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_movie_3" translatesAutoresizingMaskIntoConstraints="NO" id="Pl6-n2-z6L">
                                                 <rect key="frame" x="16" y="16" width="382" height="300"/>
@@ -476,7 +494,7 @@
             <objects>
                 <viewController id="UD5-lD-nHl" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mS2-jO-iWX">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="eam-zt-mx3"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -492,11 +510,11 @@
             <objects>
                 <viewController storyboardIdentifier="HistoryViewController" id="0DL-kq-S35" customClass="HistoryViewController" customModule="MyNetflix" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="P9C-bK-D6z">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EXs-eY-qTh">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" rowHeight="60" id="qYm-tI-P3D" customClass="HistoryCell" customModule="MyNetflix" customModuleProvider="target">
@@ -520,6 +538,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="searchTerm" destination="epG-RT-rY8" id="NoG-BX-Ieb"/>
+                                            <segue destination="auf-xZ-g3K" kind="show" identifier="movieDetail" id="XG8-Hb-rzn"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -534,7 +553,7 @@
                         <constraints>
                             <constraint firstItem="EXs-eY-qTh" firstAttribute="trailing" secondItem="OYX-Ro-fRu" secondAttribute="trailing" id="2BV-VI-Lcs"/>
                             <constraint firstItem="EXs-eY-qTh" firstAttribute="bottom" secondItem="OYX-Ro-fRu" secondAttribute="bottom" id="KGo-pA-7yB"/>
-                            <constraint firstItem="EXs-eY-qTh" firstAttribute="top" secondItem="OYX-Ro-fRu" secondAttribute="top" constant="-44" id="ghc-G6-efv"/>
+                            <constraint firstItem="EXs-eY-qTh" firstAttribute="top" secondItem="OYX-Ro-fRu" secondAttribute="top" id="ghc-G6-efv"/>
                             <constraint firstItem="EXs-eY-qTh" firstAttribute="leading" secondItem="OYX-Ro-fRu" secondAttribute="leading" id="pun-40-igm"/>
                         </constraints>
                     </view>
@@ -544,8 +563,91 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="igm-fa-Xmf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <navigationBar contentMode="scaleToFill" id="3XE-aH-du3">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <items>
+                        <navigationItem title="SearchHistory" id="mhJ-wY-sef"/>
+                    </items>
+                </navigationBar>
             </objects>
-            <point key="canvasLocation" x="4876.811594202899" y="989.73214285714278"/>
+            <point key="canvasLocation" x="4640.579710144928" y="1115.625"/>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="phC-rQ-qhD">
+            <objects>
+                <viewController id="auf-xZ-g3K" customClass="DetailViewController" customModule="MyNetflix" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Bpo-Zr-iFy">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_movie_10" translatesAutoresizingMaskIntoConstraints="NO" id="grf-Zb-LsM">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="Bdx-Rl-s00"/>
+                                </constraints>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="iEz-S6-psn">
+                                <rect key="frame" x="0.0" y="310" width="414" height="28"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="9cz-wf-Pon">
+                                        <rect key="frame" x="0.0" y="0.0" width="207" height="28"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="영화 제목" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zu8-df-dWW">
+                                                <rect key="frame" x="0.0" y="0.0" width="207" height="28"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BnU-e2-6gY">
+                                        <rect key="frame" x="207" y="0.0" width="207" height="28"/>
+                                        <color key="tintColor" systemColor="systemRedColor"/>
+                                        <state key="normal" title="Preview" image="play.circle.fill" catalog="system">
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="25"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="play:" destination="auf-xZ-g3K" eventType="touchUpInside" id="hWM-O4-Qeh"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </stackView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dQ7-ME-ETf">
+                                <rect key="frame" x="0.0" y="348" width="414" height="460"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <string key="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                            </textView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Wkb-y3-vMD"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="dQ7-ME-ETf" firstAttribute="trailing" secondItem="Wkb-y3-vMD" secondAttribute="trailing" id="18d-Cb-5Yz"/>
+                            <constraint firstItem="Wkb-y3-vMD" firstAttribute="trailing" secondItem="iEz-S6-psn" secondAttribute="trailing" id="2GJ-07-a1D"/>
+                            <constraint firstAttribute="bottom" secondItem="dQ7-ME-ETf" secondAttribute="bottom" id="CFc-iF-Ph4"/>
+                            <constraint firstItem="grf-Zb-LsM" firstAttribute="trailing" secondItem="Wkb-y3-vMD" secondAttribute="trailing" id="EPX-yb-ZPx"/>
+                            <constraint firstItem="iEz-S6-psn" firstAttribute="leading" secondItem="Wkb-y3-vMD" secondAttribute="leading" id="HVw-UL-KEf"/>
+                            <constraint firstItem="dQ7-ME-ETf" firstAttribute="top" secondItem="iEz-S6-psn" secondAttribute="bottom" constant="10" id="HeT-rJ-3vK"/>
+                            <constraint firstItem="iEz-S6-psn" firstAttribute="top" secondItem="grf-Zb-LsM" secondAttribute="bottom" constant="10" id="Mdx-kJ-6KE"/>
+                            <constraint firstItem="dQ7-ME-ETf" firstAttribute="leading" secondItem="Wkb-y3-vMD" secondAttribute="leading" id="W25-Nx-mE4"/>
+                            <constraint firstItem="grf-Zb-LsM" firstAttribute="leading" secondItem="Wkb-y3-vMD" secondAttribute="leading" id="YNY-dU-SAj"/>
+                            <constraint firstItem="grf-Zb-LsM" firstAttribute="top" secondItem="Wkb-y3-vMD" secondAttribute="top" id="nXv-HW-1Mi"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="mcE-rj-A5n"/>
+                    <connections>
+                        <outlet property="image" destination="grf-Zb-LsM" id="oXy-PF-BPu"/>
+                        <outlet property="movieDescription" destination="dQ7-ME-ETf" id="Voz-FA-jiH"/>
+                        <outlet property="movieTitle" destination="zu8-df-dWW" id="rbH-Op-Wng"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="B6h-T1-ZBI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5789.8550724637689" y="1689.5089285714284"/>
         </scene>
         <!--Recommend List View Controller-->
         <scene sceneID="4xS-pn-Mnp">
@@ -772,9 +874,11 @@
         <image name="gear" catalog="system" width="128" height="119"/>
         <image name="house.fill" catalog="system" width="128" height="106"/>
         <image name="img_header" width="400" height="450"/>
+        <image name="img_movie_10" width="330" height="471"/>
         <image name="img_movie_3" width="330" height="471"/>
         <image name="info.circle" catalog="system" width="128" height="121"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+        <image name="play.circle.fill" catalog="system" width="128" height="121"/>
         <image name="play.fill" catalog="system" width="116" height="128"/>
         <image name="play.rectangle.fill" catalog="system" width="128" height="93"/>
         <image name="plus" catalog="system" width="128" height="113"/>
@@ -784,6 +888,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

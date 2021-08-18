@@ -6,7 +6,7 @@ class RecommendListViewController: UIViewController {
 
     @IBOutlet weak var sectionTitle: UILabel!
     let viewModel = RecommentListViewModel()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -15,13 +15,15 @@ class RecommendListViewController: UIViewController {
         super.viewWillAppear(animated)
         updateUI()
     }
-    
+
     func updateUI() {
         sectionTitle.text = viewModel.type.title
     }
+    
 }
 
 extension RecommendListViewController: UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.numOfItems
     }
@@ -30,18 +32,19 @@ extension RecommendListViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecommendCell", for: indexPath) as? RecommendCell else {
             return UICollectionViewCell()
         }
-        
+
         let movie = viewModel.item(at: indexPath.item)
         cell.updateUI(movie: movie)
         return cell
     }
 }
 
-
 extension RecommendListViewController: UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 120, height: 160)
     }
+    
 }
 
 class RecommentListViewModel {
