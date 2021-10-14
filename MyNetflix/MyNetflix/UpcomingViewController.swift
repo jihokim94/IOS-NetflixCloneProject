@@ -9,12 +9,12 @@
 import UIKit
 
 class UpcomingViewController: UIViewController {
-
+    
     var awardRecommendListViewController: RecommendListViewController!
     var hotRecommendListViewController: RecommendListViewController!
     
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) { 
         if segue.identifier == "award" {
             let destinationVC = segue.destination as? RecommendListViewController
             awardRecommendListViewController = destinationVC
@@ -25,16 +25,17 @@ class UpcomingViewController: UIViewController {
             hotRecommendListViewController = destinationVC
             hotRecommendListViewController.viewModel.updateType(.hot)
             hotRecommendListViewController.viewModel.fetchItems()
-        } 
+        }
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
     
-
-  
-
+    
+    
+    
 }

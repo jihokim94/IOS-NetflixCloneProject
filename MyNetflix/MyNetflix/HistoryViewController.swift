@@ -25,6 +25,7 @@ class HistoryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.topItem?.title = "검색 히스토리"
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -63,7 +64,6 @@ class HistoryViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "movieDetail" {
             if let vc = segue.destination as? DetailViewController {
-                
                 if let indexPath = tableView.indexPathForSelectedRow {
                     let term = searchTerms?[indexPath.row].term
                     vc.searchName = term!
@@ -84,9 +84,7 @@ extension HistoryViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return searchTerms?.count ?? 0
     }
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "검색 히스토리"
-    }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? HistoryCell else { return UITableViewCell() }
@@ -104,8 +102,6 @@ extension HistoryViewController : UITableViewDelegate {
         if editingStyle == .delete {
             let target = searchTerms[indexPath.row]
 
-//            let targetId =
-            //디비에서 삭제
             let searchId = target.searchId
             db.child("searchHistory").child(searchId).removeValue()
             
